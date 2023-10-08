@@ -1,0 +1,15 @@
+screens:
+  - one
+  - titles
+  - two
+layout: title
+duration: 5
+position: 100
+data:
+  title: Test
+scheduler:
+  # dateFrom:
+  # dateTo:
+  days: [ 1, 2, 3, 4, 5, 6 ]
+  timeFrom:
+  timeTo:

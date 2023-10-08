@@ -1,0 +1,13 @@
+screens:
+  - two
+layout: iframe
+duration: 20
+position: 1
+data:
+  iframeUrl: https://example.com
+scheduler:
+  dateFrom:
+  dateTo:
+  days: [ 1, 2, 3, 4, 5, 6, 7 ]
+  timeFrom:
+  timeTo:

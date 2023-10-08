@@ -1,0 +1,13 @@
+screens:
+  - one
+layout: image
+duration: 4
+position: 10
+data:
+  imageUrl: "https://picsum.photos/id/2/1000/2000"
+scheduler:
+  dateFrom:
+  dateTo:
+  days: [ 1, 2, 3, 4, 5, 6, 7 ]
+  timeFrom: '20:00'
+  timeTo:
