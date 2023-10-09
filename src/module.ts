@@ -28,7 +28,7 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'static-signage',
+    name: 'nuxt-static-signage',
     configKey: 'signage'
   },
   defaults: {

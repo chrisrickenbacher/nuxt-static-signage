@@ -15,12 +15,12 @@ yarn add nuxt-static-signage
 npm install nuxt-static-signage
 ```
 
-1. Add `static-signage` to the `modules` section of `nuxt.config.ts`
+1. Add `nuxt-static-signage` to the `modules` section of `nuxt.config.ts`
 
 ```js
 export default defineNuxtConfig({
   modules: [
-    'static-signage'
+    'nuxt-static-signage'
   ],
   signage: {
     // module options
