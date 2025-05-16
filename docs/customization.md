@@ -43,6 +43,20 @@ data:
 ...
 ```
 
+3. Load all custom components globally
+```js
+// nuxt.config.ts
+export default defineNuxtConfig({
+    // ...
+    components: {
+        global: true,
+        dirs: ['~/components']
+    },
+    //..
+})
+
+```
+
 ## Change default layouts
 
 To overwrite existing default layouts you just need to create a components with the same name as the original one under `components/`. The rest is the same as described below under `Create your own layouts`.

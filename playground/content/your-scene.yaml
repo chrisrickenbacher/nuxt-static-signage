@@ -1,0 +1,18 @@
+screens:           # array of screens this scene is displayed on
+  - screen-id      # screen id
+  - "1234"         # - full numbers must go in a quotes 
+
+layout: iframe     # layout type, see available layout types below
+
+duration: 20       # duration the scene is displayed in seconds
+
+position: 1        # number used for sorting scenes on the same screen
+
+data:              # data to be passed to the layout (check layout types below)
+
+scheduler:
+  dateFrom:        # optional start date scene is displayed, format DD.MM.YYYY
+  dateTo:          # optional end date scene is displayed, format DD.MM.YYYY
+  timeFrom:        # optional start time scene is displayed, format HH:MM
+  timeTo:          # optional end time scene is displayed, format HH:MM
+  days: [ 1, 2 ]   # array of days to display, 1 = monday, 2 = tuesday, ...
