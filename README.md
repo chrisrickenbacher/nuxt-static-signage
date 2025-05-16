@@ -59,7 +59,7 @@ export default defineNuxtConfig({
 
 [Checkout the documentation](/docs)
 
-## 📑 License
+## License
 
 Published under the [MIT License](./LICENSE)
 
