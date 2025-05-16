@@ -1,14 +1,13 @@
+import fs from 'node:fs/promises'
 import {
   defineNuxtModule,
   createResolver,
   installModule,
   addTemplate,
   extendPages,
-  resolvePath,
-  addComponentsDir
+  addComponentsDir,
 } from '@nuxt/kit'
 import { defu } from 'defu'
-import fs from 'node:fs/promises'
 
 export interface ModuleOptions {
   player: {
@@ -18,7 +17,7 @@ export interface ModuleOptions {
      * @default 4
      */
     defaultDuration: number
-  },
+  }
   layouts: {
     /**
      * Prefix for custom layout components
@@ -32,26 +31,26 @@ export interface ModuleOptions {
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt-static-signage',
-    configKey: 'signage'
+    configKey: 'signage',
   },
   defaults: {
     player: {
-      defaultDuration: 4
+      defaultDuration: 4,
     },
     layouts: {
-      prefix: 'Layout'
-    }
+      prefix: 'Layout',
+    },
   },
   async setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
     nuxt.options.runtimeConfig.public.signage = defu(nuxt.options.runtimeConfig.public.signage, {
       player: {
-        defaultDuration: options.player.defaultDuration
+        defaultDuration: options.player.defaultDuration,
       },
       layouts: {
-        prefix: options.layouts.prefix
-      }
+        prefix: options.layouts.prefix,
+      },
     })
 
     addTemplate({
@@ -61,12 +60,13 @@ export default defineNuxtModule<ModuleOptions>({
         try {
           const fileContent = await fs.readFile(contentConfigPath, 'utf-8')
           return fileContent
-        } catch (error) {
+        }
+        catch (error) {
           console.error('Failed to read content.config.ts from module:', error)
           return `// Error: Could not load content.config.ts from module\nexport default {};`
         }
       },
-      write: true
+      write: true,
     })
 
     await installModule('@nuxt/content')
@@ -78,10 +78,10 @@ export default defineNuxtModule<ModuleOptions>({
         content: {
           files: [
             resolve('./runtime/components/**/*.{vue,mjs,ts}'),
-            resolve('./runtime/*.{mjs,js,ts}')
-          ]
-        }
-      }
+            resolve('./runtime/*.{mjs,js,ts}'),
+          ],
+        },
+      },
     })
 
     await installModule('@vite-pwa/nuxt', {
@@ -89,12 +89,12 @@ export default defineNuxtModule<ModuleOptions>({
       workbox: {
         navigateFallback: '/',
         cleanupOutdatedCaches: true,
-        globPatterns: ['**/*.{js,css,html,png,svg,ico}']
+        globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
       },
       client: {
         installPrompt: true,
-        periodicSyncForUpdates: 3600
-      }
+        periodicSyncForUpdates: 3600,
+      },
     })
 
     extendPages((pages) => {
@@ -102,18 +102,18 @@ export default defineNuxtModule<ModuleOptions>({
         {
           name: 'home',
           path: '/',
-          file: resolve('./runtime/components/Home')
+          file: resolve('./runtime/components/Home'),
         },
         {
           name: 'screens',
           path: '/screen',
-          redirect: '/'
+          redirect: '/',
         },
         {
           name: 'screen',
           path: '/screen/:id',
-          file: resolve('./runtime/components/Screen')
-        }
+          file: resolve('./runtime/components/Screen'),
+        },
       )
     })
 
@@ -121,7 +121,7 @@ export default defineNuxtModule<ModuleOptions>({
       path: resolve('./runtime/components'),
       pathPrefix: false,
       prefix: '',
-      global: true
+      global: true,
     })
-  }
+  },
 })

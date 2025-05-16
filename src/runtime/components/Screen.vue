@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { player, findNextIndex } from './../player'
+import type { ScreenMap } from './../types'
 import {
   useAsyncData,
   useRoute,
@@ -7,9 +8,8 @@ import {
   resolveComponent,
   onMounted,
   useRuntimeConfig,
-  queryCollection
+  queryCollection,
 } from '#imports'
-import type { ScreenMap } from './../types'
 
 const route = useRoute()
 const options = useRuntimeConfig().public.signage as any
@@ -19,7 +19,7 @@ const { data: scenes } = await useAsyncData<any[], ScreenMap>('home', () =>
     .select('screens', 'layout', 'data', 'duration', 'scheduler', 'position')
     .where('screens', 'LIKE', `%${route.params.id}%`)
     .order('position', 'ASC')
-    .all()
+    .all(),
 )
 const components: any[] = []
 scenes.value?.forEach((s) => {
@@ -27,7 +27,7 @@ scenes.value?.forEach((s) => {
     component: resolveComponent(
       `${options.layouts.prefix}${s.layout.charAt(0).toUpperCase()}${s.layout
         .slice(1)
-        .toLowerCase()}`
+        .toLowerCase()}`,
     ),
     data: s.data,
     layout: s.layout,
@@ -37,8 +37,8 @@ scenes.value?.forEach((s) => {
       dateTo: s.scheduler.dateTo || null,
       days: s.scheduler.days || null,
       timeFrom: s.scheduler.timeFrom || null,
-      timeTo: s.scheduler.timeTo || null
-    }
+      timeTo: s.scheduler.timeTo || null,
+    },
   })
 })
 
@@ -65,8 +65,8 @@ onMounted(() => {
       class="h-screen w-screen overflow-hidden overscroll-none"
     >
       <component
-        v-if="typeof index != 'boolean'"
         :is="components[index].component"
+        v-if="typeof index != 'boolean'"
         :data="components[index].data"
       />
       <div

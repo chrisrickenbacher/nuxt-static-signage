@@ -9,7 +9,10 @@
         </p>
       </div>
 
-      <div class="px-5 pb-5" v-if="Object.keys(screens).length > 0">
+      <div
+        v-if="Object.keys(screens).length > 0"
+        class="px-5 pb-5"
+      >
         <ul>
           <li
             v-for="(value, key) in screens"
@@ -45,17 +48,22 @@
           </li>
         </ul>
       </div>
-      <div v-else class="px-5 pb-5 text-white">No screens available.</div>
+      <div
+        v-else
+        class="px-5 pb-5 text-white"
+      >
+        No screens available.
+      </div>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import { useAsyncData, queryCollection } from '#imports'
 import type { ScreenMap } from './../types'
+import { useAsyncData, queryCollection } from '#imports'
 
 const { data } = await useAsyncData<any[], ScreenMap>('home', () =>
-  queryCollection('content').select('screens').all()
+  queryCollection('content').select('screens').all(),
 )
 
 // create array for each screen

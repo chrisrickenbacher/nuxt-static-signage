@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps({
-  data: Object
+  data: Object,
 })
 </script>
 
@@ -14,6 +14,6 @@ defineProps({
       class="h-screen w-screen"
       :src="`${data?.iframeUrl}`"
       allowfullscreen
-    ></iframe>
+    />
   </transition>
 </template>

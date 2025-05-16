@@ -1,8 +1,8 @@
 export default defineNuxtConfig({
-  compatibilityDate: '2025-05-16',
   modules: ['../src/module'],
-  signage: {},
+  ssr: false,
   devtools: { enabled: true },
+  compatibilityDate: '2025-05-16',
+  signage: {},
   target: 'static',
-  ssr: false
 })

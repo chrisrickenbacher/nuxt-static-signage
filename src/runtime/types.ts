@@ -1,5 +1,5 @@
 export interface SceneDataParams {
-    data: Object
+  data: object
 }
 export interface ScreenMap {
   [key: string]: any[]

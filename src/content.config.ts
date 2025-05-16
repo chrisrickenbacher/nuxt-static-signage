@@ -16,9 +16,9 @@ export default defineContentConfig({
           dateTo: z.date().optional(),
           timeFrom: z.string().optional(),
           timeTo: z.string().optional(),
-          days: z.array(z.number()).optional()
-        }).optional()
-      })
-    })
-  }
+          days: z.array(z.number()).optional(),
+        }).optional(),
+      }),
+    }),
+  },
 })

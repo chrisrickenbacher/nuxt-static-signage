@@ -18,7 +18,8 @@ onMounted(() => {
     if (mouseX <= window.innerWidth / 4) {
       nav.style.opacity = '1'
       clearTimeout(timer)
-    } else {
+    }
+    else {
       clearTimeout(timer)
       timer = setTimeout(() => {
         nav.style.opacity = '0'
@@ -30,17 +31,23 @@ onMounted(() => {
 
 <template>
   <div>
-    <div class="static" id="nav-container">
+    <div
+      id="nav-container"
+      class="static"
+    >
       <transition
         leave-active-class="transition ease-out duration-700"
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
       >
         <div
-          class="absolut fixed left-4 top-1/2 flex -translate-y-1/2 flex-col rounded-full border border-gray-800 bg-black p-2 text-white"
           id="nav"
+          class="absolut fixed left-4 top-1/2 flex -translate-y-1/2 flex-col rounded-full border border-gray-800 bg-black p-2 text-white"
         >
-          <NuxtLink to="/screen" class="rounded-full p-2 hover:bg-slate-800">
+          <NuxtLink
+            to="/screen"
+            class="rounded-full p-2 hover:bg-slate-800"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
