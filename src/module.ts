@@ -2,10 +2,13 @@ import {
   defineNuxtModule,
   createResolver,
   installModule,
+  addTemplate,
   extendPages,
+  resolvePath,
   addComponentsDir
 } from '@nuxt/kit'
 import { defu } from 'defu'
+import fs from 'node:fs/promises'
 
 export interface ModuleOptions {
   player: {
@@ -39,7 +42,7 @@ export default defineNuxtModule<ModuleOptions>({
       prefix: 'Layout'
     }
   },
-  async setup (options, nuxt) {
+  async setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
     nuxt.options.runtimeConfig.public.signage = defu(nuxt.options.runtimeConfig.public.signage, {
@@ -51,9 +54,22 @@ export default defineNuxtModule<ModuleOptions>({
       }
     })
 
-    await installModule('@nuxt/content', {
-      // TODO: custom path for content folder
+    addTemplate({
+      filename: 'content.config.ts',
+      getContents: async () => {
+        const contentConfigPath = resolve('./content.config.ts')
+        try {
+          const fileContent = await fs.readFile(contentConfigPath, 'utf-8')
+          return fileContent
+        } catch (error) {
+          console.error('Failed to read content.config.ts from module:', error)
+          return `// Error: Could not load content.config.ts from module\nexport default {};`
+        }
+      },
+      write: true
     })
+
+    await installModule('@nuxt/content')
 
     await installModule('@nuxtjs/tailwindcss', {
       exposeConfig: true,
@@ -72,6 +88,7 @@ export default defineNuxtModule<ModuleOptions>({
       registerType: 'autoUpdate',
       workbox: {
         navigateFallback: '/',
+        cleanupOutdatedCaches: true,
         globPatterns: ['**/*.{js,css,html,png,svg,ico}']
       },
       client: {

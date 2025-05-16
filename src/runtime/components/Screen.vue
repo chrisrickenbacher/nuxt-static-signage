@@ -1,25 +1,28 @@
-<script setup>
+<script setup lang="ts">
 import { player, findNextIndex } from './../player'
 import {
   useAsyncData,
-  queryContent,
   useRoute,
   ref,
   resolveComponent,
   onMounted,
-  useRuntimeConfig
+  useRuntimeConfig,
+  queryCollection
 } from '#imports'
-const route = useRoute()
-const options = useRuntimeConfig().public.signage
+import type { ScreenMap } from './../types'
 
-const scenes = await useAsyncData('home', () =>
-  queryContent('/')
-    .where({ screens: { $in: [route.params.id] } })
-    .sort({ position: -1, $numeric: true })
-    .find()
+const route = useRoute()
+const options = useRuntimeConfig().public.signage as any
+
+const { data: scenes } = await useAsyncData<any[], ScreenMap>('home', () =>
+  queryCollection('content')
+    .select('screens', 'layout', 'data', 'duration', 'scheduler', 'position')
+    .where('screens', 'LIKE', `%${route.params.id}%`)
+    .order('position', 'ASC')
+    .all()
 )
-const components = []
-scenes.data.value?.forEach((s) => {
+const components: any[] = []
+scenes.value?.forEach((s) => {
   components.push({
     component: resolveComponent(
       `${options.layouts.prefix}${s.layout.charAt(0).toUpperCase()}${s.layout
@@ -46,7 +49,7 @@ const updateIndex = (newValue) => {
 }
 
 onMounted(() => {
-  player(components, index.value, updateIndex)
+  player(components, index.value === true ? 0 : index.value, updateIndex)
 })
 </script>
 
@@ -62,8 +65,8 @@ onMounted(() => {
       class="h-screen w-screen overflow-hidden overscroll-none"
     >
       <component
+        v-if="typeof index != 'boolean'"
         :is="components[index].component"
-        v-if="typeof index != 'boolean' || index"
         :data="components[index].data"
       />
       <div

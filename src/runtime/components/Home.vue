@@ -9,7 +9,7 @@
         </p>
       </div>
 
-      <div class="px-5 pb-5">
+      <div class="px-5 pb-5" v-if="Object.keys(screens).length > 0">
         <ul>
           <li
             v-for="(value, key) in screens"
@@ -19,7 +19,7 @@
             <div class="flex min-w-0 gap-x-4">
               <div class="min-w-0 flex-auto">
                 <p class="text-lg font-semibold leading-6 text-white">
-                  <NuxtLink :href="'screen/' + key.toLowerCase()">
+                  <NuxtLink :href="'screen/' + key.toString().toLowerCase()">
                     <span class="absolute inset-x-0 -top-px bottom-0" />
                     {{ key }}
                   </NuxtLink>
@@ -45,25 +45,29 @@
           </li>
         </ul>
       </div>
+      <div v-else class="px-5 pb-5 text-white">No screens available.</div>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import { useAsyncData, queryContent } from '#imports'
+import { useAsyncData, queryCollection } from '#imports'
+import type { ScreenMap } from './../types'
 
-const { data } = await useAsyncData('home', () =>
-  queryContent('/').only(['screens']).find()
+const { data } = await useAsyncData<any[], ScreenMap>('home', () =>
+  queryCollection('content').select('screens').all()
 )
 
 // create array for each screen
-const screens = {}
+const screens: ScreenMap = {}
 data.value?.forEach((scene) => {
-  scene.screens?.forEach((s) => {
-    if (!screens[s]) {
-      screens[s] = []
-    }
-    screens[s].push(scene)
-  })
+  if (scene.screens) {
+    scene.screens.forEach((s) => {
+      if (!screens[s]) {
+        screens[s] = []
+      }
+      screens[s].push(scene)
+    })
+  }
 })
 </script>
