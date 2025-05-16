@@ -56,7 +56,7 @@ export default defineNuxtModule<ModuleOptions>({
     addTemplate({
       filename: 'content.config.ts',
       getContents: async () => {
-        const contentConfigPath = resolve('./content.config.ts')
+        const contentConfigPath = resolve('./runtime/content.config.ts')
         try {
           const fileContent = await fs.readFile(contentConfigPath, 'utf-8')
           return fileContent
