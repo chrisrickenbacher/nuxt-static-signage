@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/chrisrickenbacher/nuxt-static-signage/compare/v0.0.2...v0.1.1) (2025-05-16)
+
+
+### Features
+
+* support nuxt content v3 ([edbe04e](https://github.com/chrisrickenbacher/nuxt-static-signage/commit/edbe04ece3abf0e1e00f035f1bb9899b2987d17c))
+
 ### [0.0.2](https://github.com/chrisrickenbacher/nuxt-static-signage/compare/v0.0.1...v0.0.2) (2023-10-09)
 
 

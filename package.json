@@ -1,19 +1,16 @@
 {
   "name": "nuxt-static-signage",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "description": "Nuxt module for static signage",
   "repository": "chrisrickenbacher/nuxt-static-signage",
   "license": "MIT",
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/types.d.ts",
-      "import": "./dist/module.mjs",
-      "require": "./dist/module.cjs"
+      "import": "./dist/module.mjs"
     }
   },
-  "main": "./dist/module.cjs",
-  "types": "./dist/types.d.ts",
+  "main": "./dist/module.mjs",
   "files": [
     "dist"
   ],
@@ -22,8 +19,8 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "release": "npm run lint && npm run test && npm run prepack && standard-version && npm publish && git push --follow-tags",
-    "lint": "eslint --ext .js,.ts,.vue .",
+    "release": "npm run test && npm run prepack && standard-version && npm publish && git push --follow-tags",
+    "lint": "eslint --ext .js,.ts,.vue . --fix",
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
@@ -37,6 +34,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxt/eslint-config": "^1.4.0",
     "@nuxt/module-builder": "^1.0.1",
     "@nuxt/schema": "^3.17.3",
     "@nuxt/test-utils": "^3.19.0",
