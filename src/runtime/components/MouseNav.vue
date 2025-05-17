@@ -29,6 +29,9 @@ onMounted(() => {
         }, 1000)
       }
     })
+  } else {
+    const nav = document.getElementById('nav')
+    nav.style.display = 'none'
   }
 })
 </script>
