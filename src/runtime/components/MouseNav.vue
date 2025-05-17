@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from '#imports'
+import { onMounted, useRuntimeConfig } from '#imports'
 
 const reload = () => {
   window.location.reload(true)
