@@ -26,6 +26,12 @@ export interface ModuleOptions {
      */
     prefix: string
   }
+  /**
+   * Enable kiosk mode
+   *
+   * @default false
+   */
+  kioskMode: boolean
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -40,6 +46,7 @@ export default defineNuxtModule<ModuleOptions>({
     layouts: {
       prefix: 'Layout',
     },
+    kioskMode: false,
   },
   async setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
@@ -51,6 +58,7 @@ export default defineNuxtModule<ModuleOptions>({
       layouts: {
         prefix: options.layouts.prefix,
       },
+      kioskMode: options.kioskMode,
     })
 
     addTemplate({
