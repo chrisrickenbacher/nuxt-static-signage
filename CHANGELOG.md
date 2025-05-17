@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/chrisrickenbacher/nuxt-static-signage/compare/v0.1.6...v0.1.7) (2025-05-17)
+
+
+### Bug Fixes
+
+* kioskMode ([c23f9ad](https://github.com/chrisrickenbacher/nuxt-static-signage/commit/c23f9ad9e339e37927e4b09a3ac8049efe41fba8))
+
 ### [0.1.6](https://github.com/chrisrickenbacher/nuxt-static-signage/compare/v0.1.5...v0.1.6) (2025-05-17)
 
 

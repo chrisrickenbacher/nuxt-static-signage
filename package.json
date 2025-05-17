@@ -1,6 +1,6 @@
 {
   "name": "nuxt-static-signage",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Nuxt module for static signage",
   "repository": "chrisrickenbacher/nuxt-static-signage",
   "license": "MIT",
