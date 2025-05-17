@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/chrisrickenbacher/nuxt-static-signage/compare/v0.1.7...v0.1.8) (2025-05-17)
+
+
+### Bug Fixes
+
+* kisok mode to hide nav properly ([c6c32f9](https://github.com/chrisrickenbacher/nuxt-static-signage/commit/c6c32f9452aa357c77c5cebd36ca09f85a7865d9))
+
 ### [0.1.7](https://github.com/chrisrickenbacher/nuxt-static-signage/compare/v0.1.6...v0.1.7) (2025-05-17)
 
 
