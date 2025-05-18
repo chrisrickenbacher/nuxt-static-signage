@@ -8,7 +8,7 @@
 [![Nuxt][nuxt-src]][nuxt-href]
 
 
-Static signage solution based on [Nuxt Content](https://nuxt.com/modules/content) for Nuxt 3.
+Static signage solution based on [Nuxt Content v3](https://nuxt.com/modules/content) for Nuxt 3.
 
 
 <h3>
